@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown to PDF</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css"> <!-- Tema opcional -->
+</head>
+<body>
+    <div class="container">
+        <h1>Markdown to PDF</h1>
+        <div class="options">
+            <label for="page-size">Tamaño del PDF:</label>
+            <select id="page-size">
+                <option value="A4">A4</option>
+                <option value="Letter">Letter</option>
+                <option value="Legal">Legal</option>
+            </select>
+            <label for="scale">Escala:</label>
+            <input type="range" id="scale" min="0.5" max="2" step="0.1" value="1">
+            <span id="scale-value">100%</span>
+            <button id="convert-button">Convertir a PDF</button>
+        </div>
+        <div class="editor-preview">
+            <div id="markdown-input" class="code-editor" placeholder="Escribe tu Markdown aquí..."></div>
+            <div id="html-output"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/display/placeholder.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+    <script src="app.js"></script>
+    <iframe id="print-frame" style="display:none;"></iframe>
+</body>
+</html> 
