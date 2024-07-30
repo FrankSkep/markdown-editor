@@ -6,7 +6,10 @@
     <title>Markdown to PDF</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css"> <!-- Tema opcional -->
+
+    <!-- Temas claro y oscuro -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/3024-day.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/3024-night.min.css">
 </head>
 <body>
     <div class="container">
@@ -15,23 +18,32 @@
             <label for="page-size">Tamaño del PDF:</label>
             <select id="page-size">
                 <option value="A4">A4</option>
-                <option value="Letter">Letter</option>
+                <option value="Letter" selected>Letter</option>
                 <option value="Legal">Legal</option>
             </select>
             <label for="scale">Escala:</label>
             <input type="range" id="scale" min="0.5" max="2" step="0.1" value="1">
             <span id="scale-value">100%</span>
             <button id="convert-button">Convertir a PDF</button>
+            <button id="toggle-theme">Cambiar Tema</button>
         </div>
         <div class="editor-preview">
             <div id="markdown-input" class="code-editor" placeholder="Escribe tu Markdown aquí..."></div>
             <div id="html-output"></div>
         </div>
     </div>
+
+    <!-- Scripts CDN necesarios -->
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/markdown/markdown.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/display/placeholder.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/continuelist.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/selection/active-line.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/comment/comment.min.js"></script>
     <script src="app.js"></script>
     <iframe id="print-frame" style="display:none;"></iframe>
 </body>

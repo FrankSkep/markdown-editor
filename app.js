@@ -1,14 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const md = window.markdownit();
+    const md = window.markdownit({
+        html: true // Habilitar la opción para renderizar HTML
+    });
+    
     const codeMirrorEditor = CodeMirror(document.getElementById('markdown-input'), {
         lineNumbers: true,
         mode: 'markdown',
-        theme: 'monokai', // Puedes cambiar el tema si lo deseas
+        theme: '3024-night',
         placeholder: 'Escribe tu Markdown aquí...',
         lineWrapping: true,
-        matchBrackets: true
+        matchBrackets: true,
+        autoCloseBrackets: true,
+        styleActiveLine: true,
+        extraKeys: {
+            Enter: 'newlineAndIndentContinueMarkdownList',
+            "Ctrl-/": "toggleComment"
+        }
     });
 
+    // Elementos del DOM
     const htmlOutput = document.getElementById('html-output');
     const printFrame = document.getElementById('print-frame');
     const scaleInput = document.getElementById('scale');
@@ -51,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         printDocument.write('body { font-family: Arial, sans-serif; }');
         printDocument.write('@page { size: ' + pageSize + '; }');
         printDocument.write('body { transform: scale(' + scale + '); transform-origin: 0 0; }'); // Aplicar escala en la impresión
+        printDocument.write('img { max-width: ' + (100 / scale) + '%; height: auto; }'); // Ajustar tamaño de las imágenes
         printDocument.write('</style></head><body>');
         printDocument.write(htmlText);
         printDocument.write('</body></html>');
@@ -62,6 +73,19 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 
+    // Cambia el tema del editor
+    var isDayTheme = false; // Tema de día por defecto
+
+    document.getElementById('toggle-theme').addEventListener('click', function() {
+        if (isDayTheme) {
+        codeMirrorEditor.setOption("theme", "3024-night");
+        } else {
+        codeMirrorEditor.setOption("theme", "3024-day");
+        }
+        isDayTheme = !isDayTheme;
+    });
+
     // Inicializa la vista previa
     updatePreview();
 });
+
