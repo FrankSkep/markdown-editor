@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown to PDF</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <title>Markdown Tool</title>
+    <link rel="stylesheet" href="static/styles.css">
 
-    <!-- Temas claro y oscuro -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/3024-day.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/3024-night.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+
+    <!-- Estilos de GitHub Markdown (Claro y oscuro) -->
+    <link id="github-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.6.1/github-markdown.min.css" integrity="sha512-heNHQxAqmr9b5CZSB7/7NSC96qtb9HCeOKomgLFv9VLkH+B3xLgUtP73i1rM8Gpmfaxb7262LFLJaH/hKXyxyA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link id="github-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.6.1/github-markdown-dark.css" integrity="sha512-/NHcSb5982UeLUH+uEqmahMSeIJbwfloLaaThx2aXamsH1ln26bZuk3ARTOSH9NEFddM12l9ydEvVBYg/fbAag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Temas claro y oscuro para el editor -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.6/theme/darcula.min.css">
+    <link rel="stylesheet" id="codemirror-theme" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.6/theme/eclipse.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Markdown to PDF</h1>
-        <div class="options">
-            <label for="page-size">Tamaño del PDF:</label>
+
+    <!-- Barra de navegacion -->
+    <div class="navbar">
+        <h1>Markdown Tool</h1>
+        <div class="nav-options">
+            <label for="page-size">Tamaño de pagina:</label>
             <select id="page-size">
                 <option value="A4">A4</option>
                 <option value="Letter" selected>Letter</option>
@@ -25,11 +33,15 @@
             <input type="range" id="scale" min="0.5" max="2" step="0.1" value="1">
             <span id="scale-value">100%</span>
             <button id="convert-button">Convertir a PDF</button>
-            <button id="toggle-theme">Cambiar Tema</button>
+            <button id="toggle-theme"><img id="img-theme" src="static/dark.png"></button>
         </div>
+    </div>
+
+    <!-- Contenedor -->
+    <div class="container">
         <div class="editor-preview">
             <div id="markdown-input" class="code-editor" placeholder="Escribe tu Markdown aquí..."></div>
-            <div id="html-output"></div>
+            <div id="html-output" class="markdown-body"></div>
         </div>
     </div>
 
@@ -38,12 +50,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/markdown/markdown.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/display/placeholder.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/matchbrackets.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/closebrackets.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/continuelist.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/selection/active-line.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/comment/comment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="app.js"></script>
     <iframe id="print-frame" style="display:none;"></iframe>
 </body>
