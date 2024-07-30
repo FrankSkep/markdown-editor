@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // Recuperar el contenido del editor y el tema desde localStorage al cargar la página
+    const savedContent = localStorage.getItem('editorContent');
+    const savedTheme = localStorage.getItem('editorTheme');
+    let isDayTheme = savedTheme === 'day';
+
+    window.addEventListener('load', () => {
+        if (savedContent) {
+            codeMirrorEditor.setValue(savedContent);
+        }
+        if (savedTheme) {
+            if (isDayTheme) {
+                codeMirrorEditor.setOption("theme", "eclipse");
+                document.getElementById('github-light').style.display = 'none';
+                document.getElementById('github-dark').style.display = 'block';
+                imgElement.setAttribute('src', 'static/dark.png');
+                document.body.classList.remove('dark-mode');
+            } else {
+                codeMirrorEditor.setOption("theme", "darcula");
+                document.getElementById('github-light').style.display = 'block';
+                document.getElementById('github-dark').style.display = 'none';
+                imgElement.setAttribute('src', 'static/light.png');
+                document.body.classList.add('dark-mode');
+            }
+        }
+    });
+
     const md = window.markdownit({
         html: true,
         highlight: function (str, lang) {
@@ -12,11 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
         }
     });
-    
+
     const codeMirrorEditor = CodeMirror(document.getElementById('markdown-input'), {
         lineNumbers: true,
         mode: 'markdown',
-        theme: '3024-day',
+        theme: isDayTheme ? 'eclipse' : 'darcula',
         placeholder: 'Escribe tu Markdown aquí...',
         lineWrapping: true,
         matchBrackets: true,
@@ -49,37 +76,33 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Cambiar el tema del editor y la vista previa
-    let isDayTheme = true;
     document.getElementById('toggle-theme').addEventListener('click', function() {
-
-        // Obtener imagen actual
-        let currentSrc = imgElement.getAttribute('src');
-        
-        // Alternar imagen del botón
-        if (currentSrc === 'static/dark.png') {
-            imgElement.setAttribute('src', 'static/light.png');
-        } else {
-            imgElement.setAttribute('src', 'static/dark.png');
-        }
-
         if (isDayTheme) {
-            // Cambiar a tema nocturno
-            codeMirrorEditor.setOption("theme", "darcula");
-            document.getElementById('github-light').style.display = 'none';
-            document.getElementById('github-dark').style.display = 'block';
+            codeMirrorEditor.setOption("theme", "darcula"); // Tema editor
+            // Tema de vista previa
+            document.getElementById('github-light').style.display = 'block';
+            document.getElementById('github-dark').style.display = 'none';
+            
             document.body.classList.add('dark-mode');
+            localStorage.setItem('editorTheme', 'night');
+            imgElement.setAttribute('src', 'static/light.png');
         } else {
             // Cambiar a tema diurno
             codeMirrorEditor.setOption("theme", "eclipse");
-            document.getElementById('github-light').style.display = 'block';
-            document.getElementById('github-dark').style.display = 'none';
+            document.getElementById('github-light').style.display = 'none';
+            document.getElementById('github-dark').style.display = 'block';
             document.body.classList.remove('dark-mode');
+            localStorage.setItem('editorTheme', 'day');
+            imgElement.setAttribute('src', 'static/dark.png');
         }
         isDayTheme = !isDayTheme;
     });
 
     // Actualiza la vista previa al escribir en el editor
-    codeMirrorEditor.on('change', updatePreview);
+    codeMirrorEditor.on('change', () => {
+        updatePreview();
+        localStorage.setItem('editorContent', codeMirrorEditor.getValue());
+    });
 
     // Actualiza la vista previa al cambiar la escala
     scaleInput.addEventListener('input', () => {
