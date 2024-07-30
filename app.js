@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('editorTheme');
     let isDayTheme = savedTheme === 'day';
 
+    // Aplica el contenido recuperado
     window.addEventListener('load', () => {
         if (savedContent) {
             codeMirrorEditor.setValue(savedContent);
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Inicializacion markdown-it
     const md = window.markdownit({
         html: true,
         highlight: function (str, lang) {
@@ -40,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Inicializacion CodeMirror
     const codeMirrorEditor = CodeMirror(document.getElementById('markdown-input'), {
         lineNumbers: true,
         mode: 'markdown',
@@ -67,33 +70,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const markdownText = codeMirrorEditor.getValue();
         const htmlText = md.render(markdownText);
         htmlOutput.innerHTML = htmlText;
-        htmlOutput.classList.add('markdown-body'); // Añadir clase para estilos de GitHub Markdown
+        htmlOutput.classList.add('markdown-body');
         
         // Aplicar escala a la vista previa
         const scale = scaleInput.value;
         htmlOutput.style.transform = `scale(${scale})`;
-        htmlOutput.style.transformOrigin = '0 0'; // Escalar desde la esquina superior izquierda
+        htmlOutput.style.transformOrigin = '0 0';
     };
 
-    // Cambiar el tema del editor y la vista previa
+    // Cambiar el tema del editor y la vista previa al hacer click
     document.getElementById('toggle-theme').addEventListener('click', function() {
         if (isDayTheme) {
-            codeMirrorEditor.setOption("theme", "darcula"); // Tema editor
-            // Tema de vista previa
+            codeMirrorEditor.setOption("theme", "darcula"); // Cambia tema de editor
+
+            // Cambia tema de vista previa
             document.getElementById('github-light').style.display = 'block';
             document.getElementById('github-dark').style.display = 'none';
-            
             document.body.classList.add('dark-mode');
-            localStorage.setItem('editorTheme', 'night');
+
+            // Cambia imagen del boton de tema
             imgElement.setAttribute('src', 'static/light.png');
+            localStorage.setItem('editorTheme', 'night'); // Guardar tema en localStorage
         } else {
-            // Cambiar a tema diurno
-            codeMirrorEditor.setOption("theme", "eclipse");
+            codeMirrorEditor.setOption("theme", "eclipse"); // Cambia tema de editor
+
+            // Cambia tema de vista previa
             document.getElementById('github-light').style.display = 'none';
             document.getElementById('github-dark').style.display = 'block';
             document.body.classList.remove('dark-mode');
-            localStorage.setItem('editorTheme', 'day');
+
+            // Cambia imagen del boton de tema
             imgElement.setAttribute('src', 'static/dark.png');
+            localStorage.setItem('editorTheme', 'day'); // Guardar tema en localStorage
         }
         isDayTheme = !isDayTheme;
     });
@@ -111,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePreview();
     }); 
 
-    // Convierte el contenido a PDF y abre el cuadro de impresión
+    // Renderiza el contenido a markdown y crea el documento HTML para descargar
     document.getElementById('convert-button').addEventListener('click', () => {
         const pageSize = document.getElementById('page-size').value;
         const markdownText = codeMirrorEditor.getValue();
