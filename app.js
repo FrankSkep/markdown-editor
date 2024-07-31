@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         printDocument.write('body { font-family: Arial, sans-serif; }');
         printDocument.write('@page { size: ' + pageSize + '; }');
         printDocument.write('body { zoom: ' + scale + '; }');
-        printDocument.write('img { max-width: 100%; height: auto; }');
+        // printDocument.write('img { max-width: 100%; height: auto; }');
         printDocument.write('</style></head><body class="markdown-body">');
         printDocument.write(htmlText);
         printDocument.write('</body></html>');
