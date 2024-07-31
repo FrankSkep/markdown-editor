@@ -33,14 +33,12 @@ body {
 #html-output {
     max-width: 50%;
     flex: 1;
-    overflow-y: auto; /* Añade scroll vertical */
-    max-height: 100%; /* Limita la altura máxima */
-    background-color: #ffffff;
-    color: #000000;
+    overflow-y: auto;
+    max-height: 100%; 
     border-left: 1px solid #ccc;
     word-wrap: break-word;
-    padding: 10px; /* Agrega espacio interno */
-    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
+    padding: 10px; 
+    box-sizing: border-box;
 }
 
 #html-output img {
@@ -53,17 +51,7 @@ body {
     font-size: large;
 }
 
-/* Tema oscuro Output */
-body.dark-mode #html-output {
-    background-color: #0d1117;
-    color: #c9d1d9;
-}
-
-#github-dark {
-    display: none;
-}
-
-#toggle-theme img {
+#toggle-theme img, #convert-button img {
     max-width: 15px;
 }
 
@@ -89,7 +77,6 @@ body.dark-mode #html-output {
 }
 
 .navbar .nav-options label,
-.navbar .nav-options select,
 .navbar .nav-options input[type="range"],
 .navbar .nav-options button,
 .navbar .nav-options span {
@@ -100,16 +87,28 @@ body.dark-mode #html-output {
     padding: 5px;
     margin: 0;
 }
+
+.navbar .nav-options select {
+    background-color: #8a8888;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 .navbar .nav-options option {
     color : black;
+    background-color: white;
 }
 
 .navbar .nav-options button {
-    background-color: #555;
+    background-color: #888888;
+    color: rgb(255, 255, 255);
     border-radius: 5px;
     cursor: pointer;
 }
 
 .navbar .nav-options button:hover {
-    background-color: #777;
+    background-color: rgb(92, 91, 91);
+    color: rgb(230, 230, 230);
 }
