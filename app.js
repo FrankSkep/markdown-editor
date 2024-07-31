@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para leer y cargar el archivo Markdown
     function loadMarkdownFile(file) {
         if (!isMarkdownFile(file)) {
-            alert('Por favor, selecciona un archivo Markdown válido.');
+            alert('Por favor, seleccione un archivo Markdown válido.');
             return;
         }
         const reader = new FileReader();
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para descargar el archivo Markdown
     function downloadMarkdownFile() {
-        const fileName = prompt('Ingresa nombre para el archivo a descargar:');
+        const fileName = prompt('Ingrese nombre para el archivo a descargar:');
         if (!fileName) {
             return;
         }
