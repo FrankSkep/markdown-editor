@@ -39,6 +39,14 @@ body {
     word-wrap: break-word;
     padding: 10px; 
     box-sizing: border-box;
+<<<<<<< HEAD
+=======
+}
+
+#html-output img {
+    max-width: 100%;
+    height: auto;
+>>>>>>> feb4df136f977b938eef7981088e99c7688551c1
 }
 
 #markdown-input .CodeMirror {
@@ -46,6 +54,13 @@ body {
     font-size: large;
 }
 
+<<<<<<< HEAD
+=======
+#toggle-theme img, #convert-button img {
+    max-width: 15px;
+}
+
+>>>>>>> feb4df136f977b938eef7981088e99c7688551c1
 /* Estilos para la barra de navegación */
 .navbar {
     display: flex;
@@ -102,8 +117,11 @@ body {
 .navbar .nav-options button:hover {
     background-color: rgb(92, 91, 91);
     color: rgb(230, 230, 230);
+<<<<<<< HEAD
 }
 
 .navbar .nav-options #convert-button {
     max-width: 100%;
+=======
+>>>>>>> feb4df136f977b938eef7981088e99c7688551c1
 }
