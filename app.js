@@ -18,12 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para aplicar temas correspondientes
     function applyTheme() {
         if (isDayTheme) {
-            iconTheme.setAttribute('class', 'fa-solid fa-moon fa-xl');
+            iconTheme.classList.replace('fa-sun', 'fa-moon');
+            iconTheme.style.color = 'rgb(27, 221, 221)';
             codeMirrorEditor.setOption("theme", "default");
             github_light.disabled = false;
             github_dark.disabled = true;
         } else {
-            iconTheme.setAttribute('class', 'fa-solid fa-sun fa-xl');
+            iconTheme.classList.replace('fa-moon', 'fa-sun');
+            iconTheme.style.color = '#FFD43B';
             codeMirrorEditor.setOption("theme", "monokai");
             github_light.disabled = true;
             github_dark.disabled = false;
