@@ -113,7 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMarkdownFile = (file) => {
         const allowedExtensions = ['.md'];
         const fileExtension = file.name.split('.').pop();
-        return allowedExtensions.includes('.' + fileExtension);
+        return 'md'.includes(fileExtension);
+        // return allowedExtensions.includes('.' + fileExtension);
     };
 
     // Función para leer y cargar el archivo Markdown
@@ -122,8 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Por favor, selecciona un archivo Markdown válido.');
             return;
         }
-
         const reader = new FileReader();
+
         reader.onload = function(event) {
             const markdownContent = event.target.result;
             codeMirrorEditor.setValue(markdownContent);
@@ -142,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const file = event.target.files[0];
         if (file) {
             loadMarkdownFile(file);
+            fileInput.value = ''; // Limpiar el valor del input
         }
     });
 
