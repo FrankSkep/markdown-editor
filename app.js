@@ -11,21 +11,24 @@ document.addEventListener('DOMContentLoaded', () => {
             codeMirrorEditor.setValue(savedContent);
         }
         if (savedTheme) {
-            if (isDayTheme) {
-                codeMirrorEditor.setOption("theme", "eclipse");
-                document.getElementById('github-light').style.display = 'none';
-                document.getElementById('github-dark').style.display = 'block';
-                imgElement.setAttribute('src', 'static/dark.png');
-                document.body.classList.remove('dark-mode');
-            } else {
-                codeMirrorEditor.setOption("theme", "darcula");
-                document.getElementById('github-light').style.display = 'block';
-                document.getElementById('github-dark').style.display = 'none';
-                imgElement.setAttribute('src', 'static/light.png');
-                document.body.classList.add('dark-mode');
-            }
+            applyTheme();
         }
     });
+
+    // Función para aplicar temas correspondientes
+    function applyTheme() {
+        if (isDayTheme) {
+            iconTheme.setAttribute('class', 'fa-solid fa-moon fa-xl');
+            codeMirrorEditor.setOption("theme", "monokai-light");
+            github_light.disabled = false;
+            github_dark.disabled = true;
+        } else {
+            iconTheme.setAttribute('class', 'fa-solid fa-sun fa-xl');
+            codeMirrorEditor.setOption("theme", "monokai");
+            github_light.disabled = true;
+            github_dark.disabled = false;
+        }
+    }   
 
     // Inicializacion markdown-it
     const md = window.markdownit({
@@ -63,7 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const printFrame = document.getElementById('print-frame');
     const scaleInput = document.getElementById('scale');
     const scaleValue = document.getElementById('scale-value');
-    const imgElement = document.getElementById('img-theme');
+    const iconTheme = document.getElementById('icon-theme');
+    const github_light = document.getElementById('github-light');
+    const github_dark = document.getElementById('github-dark');
 
     // Función para actualizar la vista previa
     const updatePreview = () => {
@@ -97,7 +102,64 @@ document.addEventListener('DOMContentLoaded', () => {
         const scale = scaleInput.value;
         scaleValue.textContent = `${Math.round(scale * 100)}%`;
         updatePreview();
-    }); 
+    });
+
+    // --------- CARGAR ARCHIVO MARKDOWN ---------
+    // Elementos del DOM
+    const fileInput = document.getElementById('file-input');
+    const uploadButton = document.getElementById('upload-button');
+
+    // Función para comprobar la extensión del archivo
+    const isMarkdownFile = (file) => {
+        const allowedExtensions = ['.md'];
+        const fileExtension = file.name.split('.').pop();
+        return allowedExtensions.includes('.' + fileExtension);
+    };
+
+    // Función para leer y cargar el archivo Markdown
+    const loadMarkdownFile = (file) => {
+        if(!isMarkdownFile(file)) {
+            alert('Por favor, selecciona un archivo Markdown válido.');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const markdownContent = event.target.result;
+            codeMirrorEditor.setValue(markdownContent);
+            updatePreview();
+        };
+        reader.readAsText(file);
+    };
+
+    // Evento para abrir el selector de archivos al hacer clic en el botón
+    uploadButton.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    // Evento para manejar el archivo seleccionado
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            loadMarkdownFile(file);
+        }
+    });
+
+    // --------- DESCARGAR ARCHIVO MARKDOWN ---------
+    document.getElementById('download-button').addEventListener('click', () => {
+        const fileName = prompt('Por favor, introduce el nombre del archivo:', 'markdown-file');
+
+        const markdownContent = codeMirrorEditor.getValue();
+        const blob = new Blob([markdownContent], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName + '.md';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    });
 
     // Renderiza el contenido a markdown y crea el documento HTML para descargar
     document.getElementById('convert-button').addEventListener('click', () => {

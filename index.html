@@ -6,7 +6,6 @@
     <title>Markdown Editor & Viewer</title>
     <!-- Estilos propios -->
     <link rel="stylesheet" href="static/styles.css">
-<<<<<<< HEAD
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- GitHub Markdown Styles (Light and dark) -->
@@ -16,26 +15,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
     <!-- Code Editor Themes -->
-=======
-
-    <!-- Estilos de GitHub Markdown (Claro y oscuro) -->
-    <link id="github-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.6.1/github-markdown-light.css" integrity="sha512-tVO0ZLV54CEoiM+i1hvfZGcopGR3rxyyC3L2/P/6NRTVXlrp4OKyTFunluVG1BRNasDLnm6ZRPDKBGM0CkS99Q==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link id="github-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.6.1/github-markdown-dark.css" integrity="sha512-/NHcSb5982UeLUH+uEqmahMSeIJbwfloLaaThx2aXamsH1ln26bZuk3ARTOSH9NEFddM12l9ydEvVBYg/fbAag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- CodeMirror -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
-
-    <!-- Temas claro y oscuro para el editor -->
->>>>>>> feb4df136f977b938eef7981088e99c7688551c1
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.8/theme/monokai-light.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.8/theme/monokai.css">
 </head>
 <body>
-<<<<<<< HEAD
-=======
-
->>>>>>> feb4df136f977b938eef7981088e99c7688551c1
     <!-- Barra de navegación -->
     <div class="navbar">
         <h1>Markdown Tool</h1>
@@ -50,17 +33,10 @@
             <input type="range" id="scale" min="0.5" max="2" step="0.1" value="1">
             <span id="scale-value">100%</span>
             <input type="file" id="file-input" accept=".md" style="display: none;" />
-<<<<<<< HEAD
             <button id="upload-button" title="Subir archivo Markdown"><i class="fa-solid fa-upload fa-xl"></i></button>
             <button id="download-button" title="Descargar archivo Markdown"><i class="fa-solid fa-download fa-xl"></i></button>
             <button id="convert-button" title="Descargar en PDF"><i class="fa-solid fa-file-pdf fa-xl"></i></button>
             <button id="toggle-theme" title="Cambiar tema"><i id="icon-theme" class="fa-solid fa-sun fa-xl" style="color: #FFD43B;"></i></button>
-=======
-            <button id="upload-button" title="Subir archivo">Subir MD</button>
-            <button id="download-button" title="Descargar archivo">Descargar MD</button>
-            <button id="convert-button" title="Descargar en PDF">Descargar PDF</button>
-            <button id="toggle-theme" title="Cambiar tema"><img id="img-theme" src="static/dark.png" alt="Tema"></button>
->>>>>>> feb4df136f977b938eef7981088e99c7688551c1
         </div>
     </div>
 
@@ -73,7 +49,6 @@
         </div>
     </div>
 
-<<<<<<< HEAD
     <!-- Recursos necesarios -->
     <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
@@ -85,19 +60,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/selection/active-line.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/comment/comment.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" ></script>
-=======
-    <!-- Scripts CDN necesarios -->
-    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js" async></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js" async></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/markdown/markdown.min.js" async></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/display/placeholder.min.js" async></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/matchbrackets.min.js" async></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/closebrackets.min.js" async></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/continuelist.min.js" async></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/selection/active-line.min.js async"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/comment/comment.min.js" async></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" async></script>
->>>>>>> feb4df136f977b938eef7981088e99c7688551c1
 
     <script src="app.js"></script>
     <iframe id="print-frame" style="display:none;"></iframe>
