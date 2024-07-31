@@ -81,12 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para comprobar la extensión del archivo
     function isMarkdownFile(file) {
-        const allowedExtensions = ['.md'];
+        const allowedExtension = '.md';
         const fileExtension = file.name.split('.').pop();
-        return 'md'.includes(fileExtension);
+        return allowedExtension.includes(fileExtension);
     }
 
-    // Función para leer y cargar el archivo Markdown
+    // Función para leer y cargar un archivo Markdown
     function loadMarkdownFile(file) {
         if (!isMarkdownFile(file)) {
             alert('Por favor, seleccione un archivo Markdown válido.');
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsText(file);
     }
 
-    // Función para descargar el archivo Markdown
+    // Función para descargar el archivo Markdown con el contenido del editor
     function downloadMarkdownFile() {
         const fileName = prompt('Ingrese nombre para el archivo a descargar:');
         if (!fileName) {
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         URL.revokeObjectURL(url);
     }
 
-    // Función para convertir y descargar el documento HTML
+    // Función para convertir el markdown a HTML
     function convertAndDownloadHTML() {
         const pageSize = pageSizeInput.value;
         const markdownText = codeMirrorEditor.getValue();
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // ----- Events -----
+    // ----- Eventos -----
     window.addEventListener('load', () => {
         if (savedContent) {
             codeMirrorEditor.setValue(savedContent);
