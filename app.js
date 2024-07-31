@@ -1,36 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+    // Elementos del DOM
+    const htmlOutput = document.getElementById('html-output');
+    const printFrame = document.getElementById('print-frame');
+    const scaleInput = document.getElementById('scale');
+    const scaleValue = document.getElementById('scale-value');
+    const iconTheme = document.getElementById('icon-theme');
+    const github_light = document.getElementById('github-light');
+    const github_dark = document.getElementById('github-dark');
+    const fileInput = document.getElementById('file-input');
+    const uploadButton = document.getElementById('upload-button');
+    const downloadButton = document.getElementById('download-button');
+    const convertButton = document.getElementById('convert-button');
+    const toggleThemeButton = document.getElementById('toggle-theme');
+    const pageSizeInput = document.getElementById('page-size');
+
     // Recuperar el contenido del editor y el tema desde localStorage al cargar la página
     const savedContent = localStorage.getItem('editorContent');
     const savedTheme = localStorage.getItem('editorTheme');
     let isDayTheme = savedTheme === 'day';
-
-    // Aplica el contenido recuperado al cargar la página
-    window.addEventListener('load', () => {
-        if (savedContent) {
-            codeMirrorEditor.setValue(savedContent);
-        }
-        if (savedTheme) {
-            applyTheme();
-        }
-    });
-
-    // Función para aplicar temas correspondientes
-    function applyTheme() {
-        if (isDayTheme) {
-            iconTheme.classList.replace('fa-sun', 'fa-moon');
-            iconTheme.style.color = 'rgb(27, 221, 221)';
-            codeMirrorEditor.setOption("theme", "default");
-            github_light.disabled = false;
-            github_dark.disabled = true;
-        } else {
-            iconTheme.classList.replace('fa-moon', 'fa-sun');
-            iconTheme.style.color = '#FFD43B';
-            codeMirrorEditor.setOption("theme", "monokai");
-            github_light.disabled = true;
-            github_dark.disabled = false;
-        }
-    }   
 
     // Inicializacion markdown-it
     const md = window.markdownit({
@@ -63,92 +50,60 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Elementos del DOM
-    const htmlOutput = document.getElementById('html-output');
-    const printFrame = document.getElementById('print-frame');
-    const scaleInput = document.getElementById('scale');
-    const scaleValue = document.getElementById('scale-value');
-    const iconTheme = document.getElementById('icon-theme');
-    const github_light = document.getElementById('github-light');
-    const github_dark = document.getElementById('github-dark');
+    // Función para aplicar temas correspondientes
+    function applyTheme() {
+        if (isDayTheme) {
+            iconTheme.classList.replace('fa-sun', 'fa-moon');
+            iconTheme.style.color = 'rgb(177, 225, 236)';
+            codeMirrorEditor.setOption("theme", "default");
+            github_light.disabled = false;
+            github_dark.disabled = true;
+        } else {
+            iconTheme.classList.replace('fa-moon', 'fa-sun');
+            iconTheme.style.color = '#FFD43B';
+            codeMirrorEditor.setOption("theme", "monokai");
+            github_light.disabled = true;
+            github_dark.disabled = false;
+        }
+    }
 
     // Función para actualizar la vista previa
     const updatePreview = () => {
         const markdownText = codeMirrorEditor.getValue();
         const htmlText = md.render(markdownText);
         htmlOutput.innerHTML = htmlText;
-        
+
         // Aplicar escala a la vista previa
         const scale = scaleInput.value;
         htmlOutput.style.transform = `scale(${scale})`;
         htmlOutput.style.transformOrigin = '0 0';
-    };
-
-    // Cambiar el tema del editor y la vista previa al hacer click
-    document.getElementById('toggle-theme').addEventListener('click', function() {
-        isDayTheme = !isDayTheme;
-        applyTheme();
-        localStorage.setItem('editorTheme', isDayTheme ? 'day' : 'night'); // Guardar tema en localStorage
-        updatePreview();
-    });
-
-    // Actualiza la vista previa al escribir en el editor
-    codeMirrorEditor.on('change', () => {
-        updatePreview();
-        localStorage.setItem('editorContent', codeMirrorEditor.getValue());
-    });
-
-    // Actualiza la vista previa al cambiar la escala
-    scaleInput.addEventListener('input', () => {
-        const scale = scaleInput.value;
-        scaleValue.textContent = `${Math.round(scale * 100)}%`;
-        updatePreview();
-    });
-
-    // --------- CARGAR ARCHIVO MARKDOWN ---------
-    // Elementos del DOM
-    const fileInput = document.getElementById('file-input');
-    const uploadButton = document.getElementById('upload-button');
+    }
 
     // Función para comprobar la extensión del archivo
-    const isMarkdownFile = (file) => {
+    function isMarkdownFile(file) {
         const allowedExtensions = ['.md'];
         const fileExtension = file.name.split('.').pop();
         return 'md'.includes(fileExtension);
-    };
+    }
 
     // Función para leer y cargar el archivo Markdown
-    const loadMarkdownFile = (file) => {
-        if(!isMarkdownFile(file)) {
+    function loadMarkdownFile(file) {
+        if (!isMarkdownFile(file)) {
             alert('Por favor, selecciona un archivo Markdown válido.');
             return;
         }
         const reader = new FileReader();
 
-        reader.onload = function(event) {
+        reader.onload = function (event) {
             const markdownContent = event.target.result;
             codeMirrorEditor.setValue(markdownContent);
             updatePreview();
         };
         reader.readAsText(file);
-    };
+    }
 
-    // Evento para abrir el selector de archivos al hacer clic en el botón
-    uploadButton.addEventListener('click', () => {
-        fileInput.click();
-    });
-
-    // Evento para manejar el archivo seleccionado
-    fileInput.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            loadMarkdownFile(file);
-            fileInput.value = ''; // Limpiar el valor del input
-        }
-    });
-
-    // --------- DESCARGAR ARCHIVO MARKDOWN ---------
-    document.getElementById('download-button').addEventListener('click', () => {
+    // Función para descargar el archivo Markdown
+    function downloadMarkdownFile() {
         const fileName = prompt('Ingresa nombre para el archivo a descargar:');
         if (!fileName) {
             return;
@@ -163,11 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
-    });
+    }
 
-    // Renderiza el contenido a markdown y crea el documento HTML para descargar
-    document.getElementById('convert-button').addEventListener('click', () => {
-        const pageSize = document.getElementById('page-size').value;
+    // Función para convertir y descargar el documento HTML
+    function convertAndDownloadHTML() {
+        const pageSize = pageSizeInput.value;
         const markdownText = codeMirrorEditor.getValue();
         const htmlText = md.render(markdownText);
         const scale = scaleInput.value;
@@ -186,14 +141,57 @@ document.addEventListener('DOMContentLoaded', () => {
         printDocument.write(htmlText);
         printDocument.write('</body></html>');
         printDocument.close();
-        
-        printFrame.onload = function() {
+
+        printFrame.onload = function () {
             printFrame.contentWindow.focus();
             printFrame.contentWindow.print();
         };
+    }
+
+    // ----- Events -----
+    window.addEventListener('load', () => {
+        if (savedContent) {
+            codeMirrorEditor.setValue(savedContent);
+        }
+        if (savedTheme) {
+            applyTheme();
+        }
     });
+
+    toggleThemeButton.addEventListener('click', () => {
+        isDayTheme = !isDayTheme;
+        applyTheme();
+        localStorage.setItem('editorTheme', isDayTheme ? 'day' : 'night'); // Guardar tema en localStorage
+        updatePreview();
+    });
+
+    codeMirrorEditor.on('change', () => {
+        updatePreview();
+        localStorage.setItem('editorContent', codeMirrorEditor.getValue());
+    });
+
+    scaleInput.addEventListener('input', () => {
+        const scale = scaleInput.value;
+        scaleValue.textContent = `${Math.round(scale * 100)}%`;
+        updatePreview();
+    });
+
+    uploadButton.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            loadMarkdownFile(file);
+            fileInput.value = ''; // Limpiar el valor del input
+        }
+    });
+
+    downloadButton.addEventListener('click', downloadMarkdownFile);
+
+    convertButton.addEventListener('click', convertAndDownloadHTML);
 
     // Inicializa la vista previa
     updatePreview();
 });
-
