@@ -26,45 +26,24 @@ body {
     flex: 1;
     border-right: 1px solid #ccc;
     height: 100%;
-    max-height: 100%; /* Limita la altura máxima */
-    overflow-y: auto; /* Añade scroll vertical */
+    max-height: 100%;
+    overflow-y: auto;
 }
 
 #html-output {
     max-width: 50%;
     flex: 1;
-    overflow-y: auto; /* Añade scroll vertical */
-    max-height: 100%; /* Limita la altura máxima */
-    background-color: #ffffff;
-    color: #000000;
+    overflow-y: auto;
+    max-height: 100%; 
     border-left: 1px solid #ccc;
     word-wrap: break-word;
-    padding: 10px; /* Agrega espacio interno */
-    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
-}
-
-#html-output img {
-    max-width: 100%;
-    height: auto;
+    padding: 10px; 
+    box-sizing: border-box;
 }
 
 #markdown-input .CodeMirror {
-    height: 100%; /* Ocupa todo el alto de la pantalla */
+    height: 100%;
     font-size: large;
-}
-
-/* Tema oscuro Output */
-body.dark-mode #html-output {
-    background-color: #0d1117;
-    color: #c9d1d9;
-}
-
-#github-dark {
-    display: none;
-}
-
-#toggle-theme img {
-    max-width: 15px;
 }
 
 /* Estilos para la barra de navegación */
@@ -89,7 +68,6 @@ body.dark-mode #html-output {
 }
 
 .navbar .nav-options label,
-.navbar .nav-options select,
 .navbar .nav-options input[type="range"],
 .navbar .nav-options button,
 .navbar .nav-options span {
@@ -100,16 +78,32 @@ body.dark-mode #html-output {
     padding: 5px;
     margin: 0;
 }
+
+.navbar .nav-options select {
+    background-color: #8a8888;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 .navbar .nav-options option {
     color : black;
+    background-color: white;
 }
 
 .navbar .nav-options button {
-    background-color: #555;
+    background-color: #888888;
+    color: rgb(255, 255, 255);
     border-radius: 5px;
     cursor: pointer;
 }
 
 .navbar .nav-options button:hover {
-    background-color: #777;
+    background-color: rgb(92, 91, 91);
+    color: rgb(230, 230, 230);
+}
+
+.navbar .nav-options #convert-button {
+    max-width: 100%;
 }
