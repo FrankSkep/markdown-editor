@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const markdownText = codeMirrorEditor.getValue();
         const htmlText = md.render(markdownText);
         htmlOutput.innerHTML = htmlText;
-        htmlOutput.classList.add('markdown-body');
         
         // Aplicar escala a la vista previa
         const scale = scaleInput.value;
