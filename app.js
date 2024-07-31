@@ -148,8 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --------- DESCARGAR ARCHIVO MARKDOWN ---------
     document.getElementById('download-button').addEventListener('click', () => {
-        const fileName = prompt('Por favor, introduce el nombre del archivo:', 'markdown-file');
-
+        const fileName = prompt('Ingresa nombre para el archivo a descargar:');
+        if (!fileName) {
+            return;
+        }
         const markdownContent = codeMirrorEditor.getValue();
         const blob = new Blob([markdownContent], { type: 'text/markdown' });
         const url = URL.createObjectURL(blob);
