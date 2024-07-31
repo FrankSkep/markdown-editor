@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyTheme() {
         if (isDayTheme) {
             iconTheme.setAttribute('class', 'fa-solid fa-moon fa-xl');
-            codeMirrorEditor.setOption("theme", "monokai-light");
+            codeMirrorEditor.setOption("theme", "default");
             github_light.disabled = false;
             github_dark.disabled = true;
         } else {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const codeMirrorEditor = CodeMirror(document.getElementById('markdown-input'), {
         lineNumbers: true,
         mode: 'markdown',
-        theme: isDayTheme ? 'monokai-light' : 'monokai',
+        theme: isDayTheme ? 'default' : 'monokai',
         placeholder: 'Escribe tu Markdown aquí...',
         lineWrapping: true,
         matchBrackets: true,
@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const allowedExtensions = ['.md'];
         const fileExtension = file.name.split('.').pop();
         return 'md'.includes(fileExtension);
-        // return allowedExtensions.includes('.' + fileExtension);
     };
 
     // Función para leer y cargar el archivo Markdown
