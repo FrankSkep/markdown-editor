@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const convertButton = document.getElementById('convert-button');
     const toggleThemeButton = document.getElementById('toggle-theme');
     const pageSizeInput = document.getElementById('page-size');
+    const creditsBtn = document.getElementById('github-btn');
 
     // Recuperar el contenido y tema del editor al cargar la página
     const savedContent = localStorage.getItem('editorContent');
@@ -150,6 +151,10 @@ document.addEventListener('DOMContentLoaded', () => {
             applyTheme();
         }
     });
+
+    creditsBtn.onclick = function() {
+        window.open("https://github.com/FrankSkep/Markdown-Live-Editor", "_blank");
+    };
 
     toggleThemeButton.addEventListener('click', () => {
         isDayTheme = !isDayTheme;
