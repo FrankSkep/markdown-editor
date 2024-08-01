@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const htmlOutput = document.getElementById('html-output');
     const printFrame = document.getElementById('print-frame');
     const scaleInput = document.getElementById('scale');
-    const scaleValue = document.getElementById('scale-value');
     const iconTheme = document.getElementById('icon-theme');
     const github_light = document.getElementById('github-light');
     const github_dark = document.getElementById('github-dark');
@@ -72,11 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const markdownText = codeMirrorEditor.getValue();
         const htmlText = md.render(markdownText);
         htmlOutput.innerHTML = htmlText;
-
-        // Aplicar escala a la vista previa
-        const scale = scaleInput.value;
-        htmlOutput.style.transform = `scale(${scale})`;
-        htmlOutput.style.transformOrigin = '0 0';
     }
 
     // Función para comprobar la extensión del archivo
@@ -168,12 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
     codeMirrorEditor.on('change', () => {
         updatePreview();
         localStorage.setItem('editorContent', codeMirrorEditor.getValue());
-    });
-
-    scaleInput.addEventListener('input', () => {
-        const scale = scaleInput.value;
-        scaleValue.textContent = `${Math.round(scale * 100)}%`;
-        updatePreview();
     });
 
     uploadButton.addEventListener('click', () => {

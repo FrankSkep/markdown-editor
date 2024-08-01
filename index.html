@@ -22,22 +22,29 @@
     <!-- Barra de navegación -->
     <div class="navbar">
         <h1>Markdown Tool</h1>
+        <button id="github-btn" title="Dev. GitHub"><i class="fa-brands fa-github fa-xl"></i></button>
         <div class="nav-options">
-            <button><i class="fa-brands fa-github fa-xl"></i></button>
-            <label for="page-size">Tamaño de página:</label>
+            <label for="page-size">Paper:</label>
             <select id="page-size">
                 <option value="A4">A4</option>
                 <option value="Letter" selected>Letter</option>
                 <option value="Legal">Legal</option>
             </select>
-            <label for="scale">Escala:</label>
-            <input type="range" id="scale" min="0.5" max="2" step="0.1" value="1">
-            <span id="scale-value">100%</span>
+            <label for="scale">PDF Scale:</label>
+            <select id="scale">
+                <option value="0.5">50%</option>
+                <option value="0.75">75%</option>
+                <option value="1" selected>100%</option>
+                <option value="1.25">125%</option>
+                <option value="1.5">150%</option>
+                <option value="1.75">175%</option>
+                <option value="2">200%</option>
+            </select>
             <input type="file" id="file-input" accept=".md" style="display: none;" />
-            <button id="upload-button" title="Subir archivo Markdown"><i class="fa-solid fa-upload fa-xl"></i></button>
-            <button id="download-button" title="Descargar archivo Markdown"><i class="fa-solid fa-download fa-xl"></i></button>
-            <button id="convert-button" title="Descargar en PDF"><i class="fa-solid fa-file-pdf fa-xl"></i></button>
-            <button id="toggle-theme" title="Cambiar tema"><i id="icon-theme" class="fa-solid fa-sun fa-xl" style="color: #FFD43B;"></i></button>
+            <button id="upload-button" title="Upload Markdown File"><i class="fa-solid fa-upload fa-xl"></i></button>
+            <button id="download-button" title="Download Markdown File"><i class="fa-solid fa-download fa-xl"></i></button>
+            <button id="convert-button" title="Export PDF"><i class="fa-solid fa-file-pdf fa-xl"></i></button>
+            <button id="toggle-theme" title="Change theme"><i id="icon-theme" class="fa-solid fa-sun fa-xl" style="color: #FFD43B;"></i></button>
         </div>
     </div>
 
