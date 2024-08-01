@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleThemeButton = document.getElementById('toggle-theme');
     const pageSizeInput = document.getElementById('page-size');
 
-    // Recuperar el contenido del editor y el tema desde localStorage al cargar la página
+    // Recuperar el contenido y tema del editor al cargar la página
     const savedContent = localStorage.getItem('editorContent');
     const savedTheme = localStorage.getItem('editorTheme');
     let isDayTheme = savedTheme === 'day';
@@ -130,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
         printDocument.write('body { font-family: Arial, sans-serif; }');
         printDocument.write('@page { size: ' + pageSize + '; }');
         printDocument.write('body { zoom: ' + scale + '; }');
-        // printDocument.write('img { max-width: 100%; height: auto; }');
         printDocument.write('</style></head><body class="markdown-body">');
         printDocument.write(htmlText);
         printDocument.write('</body></html>');
