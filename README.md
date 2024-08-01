@@ -2,10 +2,7 @@
 
 Markdown Editor and Viewer es una herramienta web que permite a los usuarios escribir, cargar, previsualizar y descargar archivos Markdown. Además, ofrece la funcionalidad de convertir Markdown a HTML y descargarlo en formato PDF.
 
-<div align="center"><img src="https://github.com/FrankSkep/MarkdownViewer/blob/main/assets/app.gif?raw=true"></div>
-<!--
-![GIF Demostrativo](https://github.com/FrankSkep/MarkdownViewer/blob/main/assets/app.gif?raw=true)
--->
+<div align="center"><img alt="GIF mostrando la app" src="https://github.com/FrankSkep/MarkdownViewer/blob/main/assets/app.gif?raw=true"></div>
 
 ## Características
 
