@@ -8,7 +8,7 @@ Markdown Editor and Viewer es una herramienta web que permite a los usuarios esc
 
 ## Características
 
-- **Editor de Codigo**: Utiliza CodeMirror para proporcionar una experiencia de edición de codigo comoda.
+- **Editor de Codigo**: Utiliza CodeMirror para proporcionar una experiencia de edición de codigo.
 - **Previsualización en tiempo real**: Muestra el resultado renderizado en tiempo real en el panel derecho.
 - **Carga de archivos**: Permite cargar archivos Markdown desde el sistema de archivos local.
 - **Descarga de archivos**: Descarga el contenido del editor como un archivo Markdown.
@@ -16,7 +16,7 @@ Markdown Editor and Viewer es una herramienta web que permite a los usuarios esc
 - **Cambio de tema**: Alterna entre temas claro y oscuro.
 - **Almacenamiento de preferencias**: Guarda automáticamente el contenido del editor y la preferencia de tema (claro u oscuro) para recuperar la configuración en caso de cerrar o recargar la página.
 
-Para el desarrollo de la herramienta, se optó por utilizar tecnologías web básicas como HTML, CSS y JavaScript, junto con algunas bibliotecas específicas. Esto con el objetivo de mantener la simplicidad y eficiencia.
+Para el desarrollo de la herramienta, se optó por utilizar tecnologías web básicas, junto con algunas bibliotecas específicas. Esto con el objetivo de mantener la simplicidad y eficiencia.
 
 ## Dependencias
 
