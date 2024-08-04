@@ -1,6 +1,6 @@
-# Markdown Editor and Viewer
+# Markdown Live Editor
 
-Markdown Editor and Viewer es una herramienta web que permite a los usuarios escribir, cargar, previsualizar y descargar archivos Markdown. Además, ofrece la funcionalidad de convertir Markdown a HTML y descargarlo en formato PDF.
+Herramienta web que permite a los usuarios escribir, cargar, previsualizar y descargar archivos Markdown. Además, ofrece la funcionalidad de convertir Markdown a HTML y descargarlo en formato PDF.
 
 - <a href="https://markdown-tool.vercel.app/" target="_blank">markdown-tool.vercel.app</a>
 
@@ -8,7 +8,6 @@ Markdown Editor and Viewer es una herramienta web que permite a los usuarios esc
 
 ## Características
 
-- **Editor de Codigo**: Utiliza CodeMirror para proporcionar una experiencia de edición de codigo.
 - **Previsualización en tiempo real**: Muestra el resultado renderizado en tiempo real en el panel derecho.
 - **Carga de archivos**: Permite cargar archivos Markdown desde el sistema de archivos local.
 - **Descarga de archivos**: Descarga el contenido del editor como un archivo Markdown.
