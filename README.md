@@ -2,7 +2,7 @@
 
 Markdown Editor and Viewer es una herramienta web que permite a los usuarios escribir, cargar, previsualizar y descargar archivos Markdown. Además, ofrece la funcionalidad de convertir Markdown a HTML y descargarlo en formato PDF.
 
-- <a href="markdown-tool.vercel.app" target="_blank">markdown-tool.vercel.app</a>
+- <a href="https://markdown-tool.vercel.app/" target="_blank">markdown-tool.vercel.app</a>
 
 <div align="center"><img alt="GIF mostrando la app" src="https://github.com/FrankSkep/MarkdownViewer/blob/main/assets/app.gif?raw=true"></div>
 
