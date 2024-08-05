@@ -98,6 +98,10 @@ body {
     background-color: white;
 }
 
+#custom-scale {
+    width: 60px;
+}
+
 .navbar .nav-options button,
 #github-btn {
     background-color: transparent;
