@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Elementos del DOM
     const htmlOutput = document.getElementById('html-output');
     const printFrame = document.getElementById('print-frame');
-    const scaleInput = document.getElementById('scale');
     const iconTheme = document.getElementById('icon-theme');
     const github_light = document.getElementById('github-light');
     const github_dark = document.getElementById('github-dark');
@@ -13,6 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleThemeButton = document.getElementById('toggle-theme');
     const pageSizeInput = document.getElementById('page-size');
     const creditsBtn = document.getElementById('github-btn');
+    const scaleInput = document.getElementById('scale');
+    const customScaleInput = document.getElementById('custom-scale');
+    const MIN_SCALE = 50;
+    const MAX_SCALE = 200;
 
     // Recuperar el contenido y tema del editor al cargar la página
     const savedContent = localStorage.getItem('editorContent');
@@ -120,7 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const pageSize = pageSizeInput.value;
         const markdownText = codeMirrorEditor.getValue();
         const htmlText = md.render(markdownText);
-        const scale = scaleInput.value;
+        let scale = scaleInput.value;
+
+        // Si se selecciona "Otro", usar el valor del campo de entrada personalizado
+        if (scale === 'other') {
+            let valor = parseFloat((customScaleInput.value) / 100);
+            scale = validateScale(valor) ? valor : 1;
+        }
 
         const printDocument = printFrame.contentDocument || printFrame.contentWindow.document;
 
@@ -140,6 +149,11 @@ document.addEventListener('DOMContentLoaded', () => {
             printFrame.contentWindow.focus();
             printFrame.contentWindow.print();
         };
+    }
+
+    // Validar la escala personalizada
+    function validateScale(value) {
+        return value >= MIN_SCALE && value <= MAX_SCALE;
     }
 
     // ----- Eventos -----
@@ -177,6 +191,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (file) {
             loadMarkdownFile(file);
             fileInput.value = ''; // Limpiar el valor del input
+        }
+    });
+
+    // Mostrar u ocultar el campo de entrada de escala personalizada
+    scaleInput.addEventListener('change', function() {
+        if (this.value === 'other') {
+            customScaleInput.style.display = 'inline';
+            customScaleInput.focus();
+        } else {
+            customScaleInput.style.display = 'none';
         }
     });
 
