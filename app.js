@@ -127,8 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Si se selecciona "Otro", usar el valor del campo de entrada personalizado
         if (scale === 'other') {
-            let valor = parseFloat((customScaleInput.value) / 100);
-            scale = validateScale(valor) ? valor : 1;
+            let valor = parseFloat(customScaleInput.value);
+            scale = validateScale(valor) ? (valor / 100) : 1;
         }
 
         const printDocument = printFrame.contentDocument || printFrame.contentWindow.document;
