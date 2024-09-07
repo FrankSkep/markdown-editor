@@ -3,8 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const htmlOutput = document.getElementById("html-output");
     const printFrame = document.getElementById("print-frame");
     const iconTheme = document.getElementById("icon-theme");
-    const github_light = document.getElementById("github-light");
-    const github_dark = document.getElementById("github-dark");
     const fileInput = document.getElementById("file-input");
     const uploadButton = document.getElementById("upload-button");
     const downloadButton = document.getElementById("download-button");
@@ -14,6 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const creditsBtn = document.getElementById("github-btn");
     const scaleInput = document.getElementById("scale");
     const customScaleInput = document.getElementById("custom-scale");
+    // Temas de CodeMirror
+    const github_light = document.getElementById("github-light");
+    const github_dark = document.getElementById("github-dark");
+    // Estilos de resaltado
+    const highlightLight = document.getElementById("highlight-light");
+    const highlightDark = document.getElementById("highlight-dark");
     const MIN_SCALE = 50;
     const MAX_SCALE = 200;
 
@@ -22,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem("editorTheme");
     let isDayTheme = savedTheme === "day";
 
-    // Inicializacion markdown-it
+    // Inicialización de markdown-it con highlight.js
     const md = window.markdownit({
         html: true,
         highlight: function (str, lang) {
@@ -30,10 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 try {
                     return (
                         '<pre class="hljs"><code>' +
-                        hljs.highlight(str, {
-                            language: lang,
-                            ignoreIllegals: true,
-                        }).value +
+                        hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
                         "</code></pre>"
                     );
                 } catch (__) {}
@@ -73,12 +74,16 @@ document.addEventListener("DOMContentLoaded", () => {
             codeMirrorEditor.setOption("theme", "default");
             github_light.disabled = false;
             github_dark.disabled = true;
+            highlightLight.disabled = false;
+            highlightDark.disabled = true;
         } else {
             iconTheme.classList.replace("fa-moon", "fa-sun");
             iconTheme.style.color = "#FFD43B";
             codeMirrorEditor.setOption("theme", "monokai");
             github_light.disabled = true;
             github_dark.disabled = false;
+            highlightLight.disabled = true;
+            highlightDark.disabled = false;
         }
     }
 
@@ -146,18 +151,31 @@ document.addEventListener("DOMContentLoaded", () => {
         const printDocument =
             printFrame.contentDocument || printFrame.contentWindow.document;
 
+        // Establecer el estilo de resaltado correspondiente
+        const highlightStyle = isDayTheme
+        ? "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css"
+        : "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/monokai-sublime.min.css";
+        
         printDocument.open();
-        printDocument.write("<html><head><title> </title>");
-        printDocument.write(
-            '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.6.1/github-markdown.min.css" integrity="sha512-heNHQxAqmr9b5CZSB7/7NSC96qtb9HCeOKomgLFv9VLkH+B3xLgUtP73i1rM8Gpmfaxb7262LFLJaH/hKXyxyA==" crossorigin="anonymous" referrerpolicy="no-referrer" />'
-        );
-        printDocument.write("<style>");
-        printDocument.write("body { font-family: Arial, sans-serif; }");
-        printDocument.write("@page { size: " + pageSize + "; }");
-        printDocument.write("body { zoom: " + scale + "; }");
-        printDocument.write('</style></head><body class="markdown-body">');
-        printDocument.write(htmlText);
-        printDocument.write("</body></html>");
+        printDocument.write(`
+            <html>
+            <head>
+                <title> </title>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.6.1/github-markdown.min.css" />
+                <link rel="stylesheet" href="${highlightStyle}" />
+                <style>
+                    body { font-family: Arial, sans-serif; }
+                    @page { size: ${pageSize}; }
+                    body { zoom: ${scale}; }
+                </style>
+            </head>
+            <body>
+                <div class="markdown-body">
+                    ${htmlText}
+                </div>
+            </body>
+            </html>
+        `);
         printDocument.close();
 
         printFrame.onload = function () {
