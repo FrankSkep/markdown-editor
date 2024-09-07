@@ -150,11 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const printDocument =
             printFrame.contentDocument || printFrame.contentWindow.document;
-
-        // Establecer el estilo de resaltado correspondiente
-        const highlightStyle = isDayTheme
-        ? "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css"
-        : "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/monokai-sublime.min.css";
         
         printDocument.open();
         printDocument.write(`
@@ -162,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <head>
                 <title> </title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.6.1/github-markdown.min.css" />
-                <link rel="stylesheet" href="${highlightStyle}" />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" />
                 <style>
                     body { font-family: Arial, sans-serif; }
                     @page { size: ${pageSize}; }
