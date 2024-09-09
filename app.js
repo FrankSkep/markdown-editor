@@ -150,14 +150,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const printDocument =
             printFrame.contentDocument || printFrame.contentWindow.document;
-        
         printDocument.open();
         printDocument.write(`
             <html>
             <head>
                 <title> </title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.6.1/github-markdown.min.css" />
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/atom-one-light.min.css" integrity="sha512-o5v54Kh5PH0dgnf9ei0L+vMRsbm5fvIvnR/XkrZZjN4mqdaeH7PW66tumBoQVIaKNVrLCZiBEfHzRY4JJSMK/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <style>
                     body { font-family: Arial, sans-serif; }
                     @page { size: ${pageSize}; }
