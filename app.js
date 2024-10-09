@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     creditsBtn.onclick = function () {
         window.open(
-            "https://github.com/FrankSkep/Markdown-Live-Editor",
+            "https://github.com/FrankSkep/Markdown-Editor",
             "_blank"
         );
     };
