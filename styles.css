@@ -64,7 +64,7 @@ body {
 }
 
 .navbar #github-btn {
-    margin-right: auto; /* Empuja el resto de los elementos a la derecha */
+    margin-right: auto;
 }
 
 .navbar .nav-options {
@@ -120,4 +120,22 @@ body {
 
 .navbar .nav-options #convert-button {
     max-width: 100%;
+}
+
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.floating-button:hover {
+    background-color: #0056b3;
 }

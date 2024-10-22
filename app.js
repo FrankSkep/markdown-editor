@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const creditsBtn = document.getElementById("github-btn");
     const scaleInput = document.getElementById("scale");
     const customScaleInput = document.getElementById("custom-scale");
+    const copyButton = document.getElementById("copy-button");
     // Temas de CodeMirror
     const github_light = document.getElementById("github-light");
     const github_dark = document.getElementById("github-dark");
@@ -237,6 +238,26 @@ document.addEventListener("DOMContentLoaded", () => {
     downloadButton.addEventListener("click", downloadMarkdownFile);
 
     convertButton.addEventListener("click", convertAndDownloadHTML);
+
+    copyButton.addEventListener("click", () => {
+        try {
+            const htmlOutput = document.getElementById("html-output");
+            const range = document.createRange();
+            range.selectNodeContents(htmlOutput);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand("copy");
+            selection.removeAllRanges();
+            copyButton.innerHTML = `<i class="fa-solid fa-check fa-xl" style="color: #ffffff;"></i>`
+            setTimeout(() => {
+                copyButton.innerHTML = `<i class="fa-solid fa-copy fa-xl"></i>`
+            }, 1100);
+        } catch (err) {
+            console.error("Error al copiar el contenido: ", err);
+            alert("Hubo un error al copiar el contenido.");
+        }
+    });
 
     // Inicializa la vista previa
     updatePreview();
