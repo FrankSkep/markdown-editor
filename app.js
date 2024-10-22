@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const scaleInput = document.getElementById("scale");
     const customScaleInput = document.getElementById("custom-scale");
     const copyButton = document.getElementById("copy-button");
+    const copyIcon = document.getElementById("copy-icon");
     // Temas de CodeMirror
     const github_light = document.getElementById("github-light");
     const github_dark = document.getElementById("github-dark");
@@ -249,9 +250,9 @@ document.addEventListener("DOMContentLoaded", () => {
             selection.addRange(range);
             document.execCommand("copy");
             selection.removeAllRanges();
-            copyButton.innerHTML = `<i class="fa-solid fa-check fa-xl" style="color: #ffffff;"></i>`
+            copyIcon.classList.replace("fa-copy", "fa-check");
             setTimeout(() => {
-                copyButton.innerHTML = `<i class="fa-solid fa-copy fa-xl"></i>`
+                copyIcon.classList.replace("fa-check", "fa-copy");
             }, 1100);
         } catch (err) {
             console.error("Error al copiar el contenido: ", err);
