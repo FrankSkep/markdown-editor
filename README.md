@@ -28,7 +28,7 @@ Para el desarrollo de la herramienta, se optó por utilizar tecnologías web bá
 
 - <a href="https://github.com/frankskep" target="_blank">Francisco</a>
 
-##Licencia
+## Licencia
 
 Este proyecto, **inventory-rest-api**, tiene la licencia [GNU Affero General Public License v3.0] (LICENCIA).
 
