@@ -30,6 +30,6 @@ Para el desarrollo de la herramienta, se optó por utilizar tecnologías web bá
 
 ## Licencia
 
-Este proyecto, **markdown-editor**, tiene la licencia [GNU Affero General Public License v3.0] (LICENCIA).
+**Este proyecto está licenciado bajo la [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html).**
 
-© 2024 FrankSkep. Usted es libre de utilizar, modificar y distribuir este software según los términos de GPL-3.0. Para obtener más detalles, consulte el archivo completo [LICENCIA](LICENSE).
+© 2024 FrankSkep. Para más detalles, consulte el archivo completo [LICENSE](LICENSE).
