@@ -32,4 +32,4 @@ Para el desarrollo de la herramienta, se optó por utilizar tecnologías web bá
 
 Este proyecto, **inventory-rest-api**, tiene la licencia [GNU Affero General Public License v3.0] (LICENCIA).
 
-© 2024 FrankSkep. Usted es libre de utilizar, modificar y distribuir este software según los términos de GPL-3.0. Para obtener más detalles, consulte el archivo completo [LICENCIA](LICENCIA).
+© 2024 FrankSkep. Usted es libre de utilizar, modificar y distribuir este software según los términos de GPL-3.0. Para obtener más detalles, consulte el archivo completo [LICENCIA](LICENSE).
