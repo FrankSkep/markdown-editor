@@ -30,6 +30,6 @@ Para el desarrollo de la herramienta, se optó por utilizar tecnologías web bá
 
 ## Licencia
 
-**Este proyecto está licenciado bajo la [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html).**
+**[GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html)**.  
 
-© 2024 FrankSkep. Para más detalles, consulte el archivo completo [LICENSE](LICENSE).
+© 2024 FrankSkep. Consultar el archivo [LICENSE](LICENSE) para mas informacion.
