@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markdown Editor</title>
-    <!-- Estilos propios -->
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="assets/icon.png">
     <!-- Font Awesome -->
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.8/theme/monokai.min.css">
 </head>
 <body>
-    <!-- Barra de navegación -->
+    <!-- Navigation Bar -->
     <div class="navbar">
         <h1>Markdown Editor</h1>
         <button id="github-btn" title="Source Code"><i class="fa-brands fa-github fa-xl"></i></button>
@@ -33,19 +33,19 @@
         </div>
     </div>
 
-    <!-- Contenedor -->
+    <!-- Container -->
     <div class="container">
         <div class="editor-preview">
-            <div id="markdown-input" class="code-editor" placeholder="Escribe tu Markdown aquí..."></div>
+            <div id="markdown-input" class="code-editor" placeholder="Write your Markdown here..."></div>
             <div id="html-output" class="markdown-body"></div>
-            <!-- Boton flotante para copiar contenido de la vista previa -->
+            <!-- Floating button to copy preview content -->
             <button id="copy-button" title="Copy" class="floating-button">
                 <i class="fa-solid fa-copy fa-xl" id="copy-icon"></i>
             </button>
         </div>
     </div>
 
-    <!-- Recursos necesarios -->
+    <!-- Required Resources -->
     <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/markdown/markdown.min.js" ></script>
@@ -59,4 +59,4 @@
     <script src="app.js"></script>
     <iframe id="print-frame" style="display:none;"></iframe>
 </body>
-</html> 
+</html>

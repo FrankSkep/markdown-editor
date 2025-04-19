@@ -26,7 +26,7 @@ This project uses the following technologies and dependencies:
 
 ## Author
 
-- [Francisco](https://github.com/frankskep)
+- [Francisco](https://github.com/FrankSkep)
 
 ## License
 
