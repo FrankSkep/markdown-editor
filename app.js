@@ -8,20 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const downloadButton = document.getElementById("download-button");
     const convertButton = document.getElementById("convert-button");
     const toggleThemeButton = document.getElementById("toggle-theme");
-    const pageSizeInput = document.getElementById("page-size");
     const creditsBtn = document.getElementById("github-btn");
-    const scaleInput = document.getElementById("scale");
-    const customScaleInput = document.getElementById("custom-scale");
     const copyButton = document.getElementById("copy-button");
     const copyIcon = document.getElementById("copy-icon");
+
     // Temas de CodeMirror
     const github_light = document.getElementById("github-light");
     const github_dark = document.getElementById("github-dark");
+
     // Estilos de resaltado
     const highlightLight = document.getElementById("highlight-light");
     const highlightDark = document.getElementById("highlight-dark");
-    const MIN_SCALE = 50;
-    const MAX_SCALE = 200;
 
     // Recuperar el contenido y tema del editor al cargar la página
     const savedContent = localStorage.getItem("editorContent");
@@ -50,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Inicializacion CodeMirror
-    const codeMirrorEditor = CodeMirror(
+    const codeMirrorObject = CodeMirror(
         document.getElementById("markdown-input"),
         {
             lineNumbers: true,
@@ -73,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isDayTheme) {
             iconTheme.classList.replace("fa-sun", "fa-moon");
             iconTheme.style.color = "rgb(177, 225, 236)";
-            codeMirrorEditor.setOption("theme", "default");
+            codeMirrorObject.setOption("theme", "default");
             github_light.disabled = false;
             github_dark.disabled = true;
             highlightLight.disabled = false;
@@ -81,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             iconTheme.classList.replace("fa-moon", "fa-sun");
             iconTheme.style.color = "#FFD43B";
-            codeMirrorEditor.setOption("theme", "monokai");
+            codeMirrorObject.setOption("theme", "monokai");
             github_light.disabled = true;
             github_dark.disabled = false;
             highlightLight.disabled = true;
@@ -91,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Función para actualizar la vista previa
     const updatePreview = () => {
-        const markdownText = codeMirrorEditor.getValue();
+        const markdownText = codeMirrorObject.getValue();
         const htmlText = md.render(markdownText);
         htmlOutput.innerHTML = htmlText;
     };
@@ -113,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         reader.onload = function (event) {
             const markdownContent = event.target.result;
-            codeMirrorEditor.setValue(markdownContent);
+            codeMirrorObject.setValue(markdownContent);
             updatePreview();
         };
         reader.readAsText(file);
@@ -125,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!fileName) {
             return;
         }
-        const markdownContent = codeMirrorEditor.getValue();
+        const markdownContent = codeMirrorObject.getValue();
         const blob = new Blob([markdownContent], { type: "text/markdown" });
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
@@ -139,16 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Función para convertir el markdown a HTML
     function convertAndDownloadHTML() {
-        const pageSize = pageSizeInput.value;
-        const markdownText = codeMirrorEditor.getValue();
+        const markdownText = codeMirrorObject.getValue();
         const htmlText = md.render(markdownText);
-        let scale = scaleInput.value;
-
-        // Si se selecciona "Otro", usar el valor del campo de entrada personalizado
-        if (scale === "other") {
-            let valor = parseFloat(customScaleInput.value);
-            scale = validateScale(valor) ? valor / 100 : 1;
-        }
 
         const printDocument =
             printFrame.contentDocument || printFrame.contentWindow.document;
@@ -161,8 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/atom-one-light.min.css" integrity="sha512-o5v54Kh5PH0dgnf9ei0L+vMRsbm5fvIvnR/XkrZZjN4mqdaeH7PW66tumBoQVIaKNVrLCZiBEfHzRY4JJSMK/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <style>
                     body { font-family: Arial, sans-serif; }
-                    @page { size: ${pageSize}; }
-                    body { zoom: ${scale}; }
                 </style>
             </head>
             <body>
@@ -180,21 +167,18 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-    // Validar la escala personalizada
-    function validateScale(value) {
-        return value >= MIN_SCALE && value <= MAX_SCALE;
-    }
-
-    // ----- Eventos -----
+    // ------- Event Listeners -------
+    // Aplicar el tema guardado al cargar la página
     window.addEventListener("load", () => {
         if (savedContent) {
-            codeMirrorEditor.setValue(savedContent);
+            codeMirrorObject.setValue(savedContent);
         }
         if (savedTheme) {
             applyTheme();
         }
     });
 
+    // Abrir el enlace de GitHub en una nueva pestaña 
     creditsBtn.onclick = function () {
         window.open(
             "https://github.com/FrankSkep/Markdown-Editor",
@@ -202,6 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     };
 
+    // Cambiar el tema al hacer clic
     toggleThemeButton.addEventListener("click", () => {
         isDayTheme = !isDayTheme;
         applyTheme();
@@ -209,30 +194,23 @@ document.addEventListener("DOMContentLoaded", () => {
         updatePreview();
     });
 
-    codeMirrorEditor.on("change", () => {
+    // Actualizar vista previa y guardar contenido en localStorage al cambiar el contenido del editor
+    codeMirrorObject.on("change", () => {
         updatePreview();
-        localStorage.setItem("editorContent", codeMirrorEditor.getValue());
+        localStorage.setItem("editorContent", codeMirrorObject.getValue());
     });
 
+    // Abrir el selector de archivos al hacer clic en el botón de carga
     uploadButton.addEventListener("click", () => {
         fileInput.click();
     });
 
+    // Cargar el archivo Markdown seleccionado
     fileInput.addEventListener("change", (event) => {
         const file = event.target.files[0];
         if (file) {
             loadMarkdownFile(file);
             fileInput.value = ""; // Limpiar el valor del input
-        }
-    });
-
-    // Mostrar u ocultar el campo de entrada de escala personalizada
-    scaleInput.addEventListener("change", function () {
-        if (this.value === "other") {
-            customScaleInput.style.display = "inline";
-            customScaleInput.focus();
-        } else {
-            customScaleInput.style.display = "none";
         }
     });
 
