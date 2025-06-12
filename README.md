@@ -9,10 +9,13 @@ A minimalist and efficient editor for working with Markdown files.
 ## 🚀 Features
 
 - **Real-time preview** of Markdown content.
+- **Resizable panels**: Easily adjust the width of the Markdown code and preview panels with a draggable resizer.
 - **Load and save** Markdown files.
 - **Export to PDF** functionality.
 - **Light and dark themes** with preference storage.
 - **Auto-save** for content and settings.
+- **Improved visual style** for a modern and clean interface.
+- **Responsive design**: Optimized for use on both desktop and mobile devices.
 
 ## 🛠️ Technologies
 

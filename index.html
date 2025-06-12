@@ -7,6 +7,10 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="assets/icon.png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- GitHub Markdown Styles (Light and dark) -->
@@ -22,26 +26,59 @@
 <body>
     <!-- Navigation Bar -->
     <div class="navbar">
-        <h1>Markdown Editor</h1>
-        <button id="github-btn" title="Source Code"><i class="fa-brands fa-github fa-xl"></i></button>
+        <div class="logo-container">
+            <i class="fa-solid fa-pen-fancy"></i>
+            <h1>Markdown Editor</h1>
+        </div>
         <div class="nav-options">
             <input type="file" id="file-input" accept=".md" style="display: none;" />
-            <button id="upload-button" title="Upload Markdown File"><i class="fa-solid fa-upload fa-xl"></i></button>
-            <button id="download-button" title="Download Markdown File"><i class="fa-solid fa-download fa-xl"></i></button>
-            <button id="convert-button" title="Export PDF"><i class="fa-solid fa-file-pdf fa-xl"></i></button>
-            <button id="toggle-theme" title="Change theme"><i id="icon-theme" class="fa-solid fa-sun fa-xl" style="color: #FFD43B;"></i></button>
+            <button id="upload-button" class="nav-button" title="Upload Markdown File">
+                <i class="fa-solid fa-upload"></i>
+                <span class="button-text">Upload</span>
+            </button>
+            <button id="download-button" class="nav-button" title="Download Markdown File">
+                <i class="fa-solid fa-download"></i>
+                <span class="button-text">Download</span>
+            </button>
+            <button id="convert-button" class="nav-button" title="Export PDF">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span class="button-text">Export PDF</span>
+            </button>
+            <button id="toggle-theme" class="nav-button" title="Change theme">
+                <i id="icon-theme" class="fa-solid fa-sun"></i>
+                <span class="button-text">Theme</span>
+            </button>
+            <button id="github-btn" class="nav-button" title="Source Code">
+                <i class="fa-brands fa-github"></i>
+                <span class="button-text">GitHub</span>
+            </button>
         </div>
     </div>
 
     <!-- Container -->
     <div class="container">
         <div class="editor-preview">
-            <div id="markdown-input" class="code-editor" placeholder="Write your Markdown here..."></div>
-            <div id="html-output" class="markdown-body"></div>
-            <!-- Floating button to copy preview content -->
-            <button id="copy-button" title="Copy" class="floating-button">
-                <i class="fa-solid fa-copy fa-xl" id="copy-icon"></i>
-            </button>
+            <div class="editor-container">
+                <div class="editor-header">
+                    <span>MARKDOWN</span>
+                    <button id="copy-markdown-button" title="Copiar Markdown" class="preview-button">
+                        <i class="fa-solid fa-copy" id="copy-markdown-icon"></i>
+                        <span>Copy</span>
+                    </button>
+                </div>
+                <div id="markdown-input" class="code-editor" placeholder="Write your Markdown here..."></div>
+            </div>
+            <div class="resizer"></div>
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span>PREVIEW</span>
+                    <button id="copy-button" title="Copy" class="preview-button">
+                        <i class="fa-solid fa-copy" id="copy-icon"></i>
+                        <span>Copy</span>
+                    </button>
+                </div>
+                <div id="html-output" class="markdown-body"></div>
+            </div>
         </div>
     </div>
 

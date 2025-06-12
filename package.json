@@ -1,0 +1,7 @@
+{
+  "name": "markdown-editor",
+  "version": "1.0.1",
+  "description": "A simple markdown editor with live preview, syntax highlighting, and export options.",
+  "author": "FrankSkep",
+  "private": true
+}
