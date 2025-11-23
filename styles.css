@@ -74,8 +74,9 @@ body {
   gap: 0.75rem;
 }
 
-.logo-container i {
+.logo-container img {
   font-size: 1.5rem;
+  width: 2rem;
   color: var(--primary-color);
 }
 
@@ -242,7 +243,7 @@ body {
 }
 
 [data-theme="light"] #icon-theme {
-  color: rgb(177, 225, 236);
+  color: rgb(34, 121, 219);
 }
 
 /* Responsive Design */

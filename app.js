@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
         githubDark: document.getElementById('github-dark'),
         highlightLight: document.getElementById('highlight-light'),
         highlightDark: document.getElementById('highlight-dark'),
+        fontSizeRange: document.getElementById('font-size-range'),
+        fontSizeValue: document.getElementById('font-size-value'),
     };
 
     // Global variables
@@ -135,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function: Convert and download HTML
     const convertAndDownloadHTML = () => {
         const htmlText = md.render(codeMirrorObject.getValue());
+        const fontSize = elements.fontSizeRange ? elements.fontSizeRange.value + 'px' : '14px';
         const printDocument =
             elements.printFrame.contentDocument ||
             elements.printFrame.contentWindow.document;
@@ -150,6 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         max-width: 800px;
                         margin: 0 auto;
                         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+                    }
+                    .markdown-body {
+                        font-size: ${fontSize};
                     }
                     @media print {
                         body {
@@ -170,6 +176,13 @@ document.addEventListener('DOMContentLoaded', () => {
             showNotification('PDF export initiated!');
         };
     };
+    // Inicializar el valor mostrado y actualizar en tiempo real
+    if (elements.fontSizeRange && elements.fontSizeValue) {
+        elements.fontSizeValue.textContent = elements.fontSizeRange.value + 'px';
+        elements.fontSizeRange.addEventListener('input', (e) => {
+            elements.fontSizeValue.textContent = e.target.value + 'px';
+        });
+    }
 
     // Función: Copiar Markdown
     const copyMarkdownToClipboard = () => {

@@ -28,7 +28,7 @@
     <!-- Navigation Bar -->
     <div class="navbar">
         <div class="logo-container">
-            <i class="fa-solid fa-pen-fancy"></i>
+            <img src="assets/icon.png" alt="Logo" class="logo" />
             <h1>Markdown Editor</h1>
         </div>
         <div class="nav-options">
@@ -45,6 +45,11 @@
                 <i class="fa-solid fa-file-pdf"></i>
                 <span class="button-text">Export PDF</span>
             </button>
+                <label for="font-size-range" style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;">
+                    <i class="fa-solid fa-text-height"></i>
+                    <input type="range" id="font-size-range" min="10" max="32" value="14" step="1" style="vertical-align:middle;">
+                    <span id="font-size-value">14px</span>
+                </label>
             <button id="toggle-theme" class="nav-button" title="Change theme">
                 <i id="icon-theme" class="fa-solid fa-sun"></i>
                 <span class="button-text">Theme</span>
